@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Get Your Key</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
+        .key { background: #f0f0f0; padding: 20px; margin: 20px; border-radius: 10px; }
+    </style>
+</head>
+<body>
+    <h1>🔑 Nhận Key Bot</h1>
+    <div class="key">
+        <h2>Key của bạn là:</h2>
+        <div id="keyDisplay">Đang tải...</div>
+    </div>
+    <p>Sao chép key và dùng lệnh <code>!nhapkey &lt;key&gt;</code> trong Discord</p>
+
+    <script>
+        // Lấy key từ URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const key = urlParams.get('key');
+        
+        if (key) {
+            document.getElementById('keyDisplay').textContent = key;
+            // Tự động copy key
+            navigator.clipboard.writeText(key).then(() => {
+                alert('Key đã được copy vào clipboard!');
+            });
+        } else {
+            document.getElementById('keyDisplay').textContent = 'Không tìm thấy key!';
+        }
+    </script>
+</body>
+</html>

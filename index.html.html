@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Get Your Bot Key</title>
+    <meta charset="UTF-8">
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            text-align: center; 
+            padding: 50px; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        .key-box { 
+            background: rgba(255,255,255,0.2); 
+            padding: 20px; 
+            margin: 20px 0; 
+            border-radius: 10px; 
+            font-size: 24px;
+            font-weight: bold;
+            border: 2px solid white;
+        }
+        .instructions {
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 Nhận Key Bot Discord</h1>
+        <div class="key-box">
+            <div id="keyDisplay">Đang tải key...</div>
+        </div>
+        
+        <div class="instructions">
+            <h3>📋 Hướng dẫn sử dụng:</h3>
+            <p>1. Copy key ở trên</p>
+            <p>2. Quay lại Discord</p>
+            <p>3. Dùng lệnh: <code>!nhapkey KEY_CỦA_BẠN</code></p>
+        </div>
+        
+        <p>Key sẽ tự động copy vào clipboard của bạn!</p>
+    </div>
+
+    <script>
+        // Lấy key từ URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const key = urlParams.get('key');
+        
+        if (key) {
+            // Hiển thị key
+            document.getElementById('keyDisplay').textContent = key;
+            
+            // Tự động copy key
+            navigator.clipboard.writeText(key).then(() => {
+                // Thông báo copy thành công
+                const keyElement = document.getElementById('keyDisplay');
+                keyElement.innerHTML = `${key} <br><small style="color: #90EE90;">✅ Đã copy vào clipboard!</small>`;
+            }).catch(err => {
+                console.error('Copy failed: ', err);
+            });
+        } else {
+            document.getElementById('keyDisplay').textContent = '❌ Không tìm thấy key!';
+        }
+    </script>
+</body>
+</html>
